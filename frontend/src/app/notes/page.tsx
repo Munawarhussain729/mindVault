@@ -49,8 +49,8 @@ export default function NotesPage() {
 		setError(null);
 		try {
 			const data = await fetchNotes({ page, search, tag: activeTagId });
-			setNotes(data.results);
-			setTotalCount(data.count);
+			setNotes(data.results ?? []);
+			setTotalCount(data.count ?? 0);
 		} catch {
 			setError("Couldn't load your notes. Please try again.");
 		} finally {

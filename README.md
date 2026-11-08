@@ -102,6 +102,10 @@ backend/        Django project (mindvault) + core app (notes, tags, auth)
 frontend/       Next.js app — pages under src/app, UI under src/components
 ```
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

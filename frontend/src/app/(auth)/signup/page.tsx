@@ -18,7 +18,7 @@ export default function SignupPage() {
 			alert("Signup successful!");
 			router.push("/login");
 		} catch (err) {
-			alert(`Signup failed:  + ${err}`);
+			alert("Signup failed. Please check your details and try again.");
 		} finally {
 			setLoading(false);
 		}
