@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LogOut, StickyNote, Tag, User } from "lucide-react";
+import { logout as clearSession } from "@/app/lib/useAuth";
 
 const navLinks = [
 	{ href: "/dashboard", label: "Notes", icon: StickyNote },
@@ -14,8 +15,8 @@ export default function Sidebar() {
 	const router = useRouter();
 
 	const logout = () => {
-		// localStorage.removeItem("accessToken");
-		// router.push("/login");
+		clearSession();
+		router.push("/login");
 	};
 
 	return (

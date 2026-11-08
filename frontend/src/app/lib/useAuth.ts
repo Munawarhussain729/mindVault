@@ -1,4 +1,5 @@
 import API from "./api";
+import { clearToken, setTokens } from "./auth";
 
 export const signup = async (
 	username: string,
@@ -9,17 +10,14 @@ export const signup = async (
 	return response.data;
 };
 
+/** Signs in and stores the tokens. Throws if the credentials are rejected. */
 export const login = async (username: string, password: string) => {
 	const response = await API.post("/auth/login/", { username, password });
 	const { access, refresh } = response.data;
-
-	localStorage.setItem("accessToken", access);
-	localStorage.setItem("refreshToken", refresh);
-
-	return response?.data;
+	setTokens(access, refresh);
+	return response.data;
 };
 
 export const logout = () => {
-	localStorage.removeItem("accessToken");
-	localStorage.removeItem("refreshToken");
+	clearToken();
 };

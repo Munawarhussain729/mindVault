@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/app/lib/useAuth";
-import { setTokens } from "@/app/lib/auth";
 
 export default function LoginPage() {
 	const [form, setForm] = useState({ username: "", password: "" });
@@ -15,10 +14,9 @@ export default function LoginPage() {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			const response = await login(form.username, form.password);
-			setTokens(response?.data?.access, response?.data?.refresh);
-			router.push("/");
-		} catch (err) {
+			await login(form.username, form.password);
+			router.push("/notes");
+		} catch {
 			alert("Invalid credentials");
 		} finally {
 			setLoading(false);
