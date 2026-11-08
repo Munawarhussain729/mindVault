@@ -17,8 +17,8 @@ export default function SignupPage() {
 			await signup(form.username, form.email, form.password);
 			alert("Signup successful!");
 			router.push("/login");
-		} catch (err) {
-			alert(`Signup failed:  + ${err}`);
+		} catch {
+			alert("Signup failed. Please check your details and try again.");
 		} finally {
 			setLoading(false);
 		}

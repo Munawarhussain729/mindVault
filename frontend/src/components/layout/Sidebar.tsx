@@ -1,13 +1,11 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, StickyNote, Tag, User, X } from "lucide-react";
+import { LogOut, StickyNote, X } from "lucide-react";
 import { logout as clearSession } from "@/app/lib/useAuth";
 
 const navLinks = [
 	{ href: "/notes", label: "Notes", icon: StickyNote },
-	{ href: "/dashboard/tags", label: "Tags", icon: Tag },
-	{ href: "/dashboard/profile", label: "Profile", icon: User },
 ];
 
 interface SidebarProps {
