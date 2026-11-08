@@ -5,7 +5,19 @@ quickly. Notes and tags are private to your account.
 
 ![MindVault notes page](docs/screenshot.png)
 
-<!-- Add a screenshot at docs/screenshot.png and it will appear above. -->
+## Screenshots
+
+| Search | Tag filter |
+| --- | --- |
+| ![Searching notes](docs/search.png) | ![Filtering by tag](docs/tag-filter.png) |
+
+| Edit a note | Delete confirmation |
+| --- | --- |
+| ![Note editor](docs/editor.png) | ![Delete confirmation dialog](docs/delete-confirm.png) |
+
+| Mobile | Mobile navigation |
+| --- | --- |
+| <img src="docs/mobile.png" alt="Mobile notes page" width="260"> | <img src="docs/mobile-menu.png" alt="Mobile navigation drawer" width="260"> |
 
 ## Features
 
