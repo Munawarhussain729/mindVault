@@ -19,6 +19,12 @@ quickly. Notes and tags are private to your account.
 | --- | --- |
 | <img src="docs/mobile.png" alt="Mobile notes page" width="260"> | <img src="docs/mobile-menu.png" alt="Mobile navigation drawer" width="260"> |
 
+| Log in | Log in (error) |
+| --- | --- |
+| ![Log in page](docs/login.png) | ![Log in with an incorrect password](docs/login-error.png) |
+
+<img src="docs/login-mobile.png" alt="Log in on mobile" width="260">
+
 ## Features
 
 - JWT authentication with access/refresh tokens (sign up, log in, stay signed in)

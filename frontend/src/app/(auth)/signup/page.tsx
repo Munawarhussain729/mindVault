@@ -2,64 +2,85 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signup } from "@/app/lib/useAuth";
+import AuthField from "@/components/auth/AuthField";
+import { apiErrorMessage } from "@/components/auth/errors";
 
 export default function SignupPage() {
 	const [form, setForm] = useState({ username: "", email: "", password: "" });
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
+		setError(null);
 		try {
 			await signup(form.username, form.email, form.password);
-			alert("Signup successful!");
-			router.push("/login");
-		} catch {
-			alert("Signup failed. Please check your details and try again.");
+			router.push("/login?registered=1");
+		} catch (err) {
+			setError(
+				apiErrorMessage(err, "Couldn't create your account. Check your details and try again."),
+			);
 		} finally {
 			setLoading(false);
 		}
 	};
 
 	return (
-		<div className="flex items-center justify-center h-screen">
-			<form
-				onSubmit={handleSubmit}
-				className="bg-white shadow p-6 rounded w-80 space-y-4"
-			>
-				<h2 className="text-xl font-semibold text-center">Create Account</h2>
-				<input
+		<>
+			<h1 className="text-3xl font-semibold tracking-tight text-gray-900">Create your account</h1>
+			<p className="mt-2 text-gray-600">Free, and your notes stay private.</p>
+
+			{error && (
+				<p role="alert" className="mt-6 rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-800">
+					{error}
+				</p>
+			)}
+
+			<form onSubmit={handleSubmit} className="mt-8 space-y-5">
+				<AuthField
+					id="username"
+					label="Username"
 					type="text"
-					placeholder="Username"
-					className="border p-2 w-full"
+					autoComplete="username"
 					value={form.username}
 					onChange={(e) => setForm({ ...form, username: e.target.value })}
 				/>
-				<input
+				<AuthField
+					id="email"
+					label="Email"
 					type="email"
-					placeholder="Email"
-					className="border p-2 w-full"
+					autoComplete="email"
 					value={form.email}
 					onChange={(e) => setForm({ ...form, email: e.target.value })}
 				/>
-				<input
+				<AuthField
+					id="password"
+					label="Password"
 					type="password"
-					placeholder="Password"
-					className="border p-2 w-full"
+					autoComplete="new-password"
 					value={form.password}
 					onChange={(e) => setForm({ ...form, password: e.target.value })}
 				/>
 				<button
 					type="submit"
-					className="bg-blue-500 text-white p-2 w-full rounded"
 					disabled={loading}
+					className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-60"
 				>
-					{loading ? "Creating..." : "Sign Up"}
+					{loading ? "Creating account…" : "Create account"}
 				</button>
 			</form>
-		</div>
+
+			<p className="mt-8 text-sm text-gray-600">
+				Already have an account?{" "}
+				<Link href="/login" className="font-medium text-indigo-700 underline underline-offset-2 hover:text-indigo-900">
+					Log in
+				</Link>
+			</p>
+		</>
 	);
 }
