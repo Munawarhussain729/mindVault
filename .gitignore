@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python / Django
+__pycache__/
+*.pyc
+.venv/
+venv/
+db.sqlite3
+*.sqlite3
+.env
+.env.*
+!.env.example
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+build/
+*.log
+.env.local
